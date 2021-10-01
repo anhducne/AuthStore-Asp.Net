@@ -1,0 +1,59 @@
+﻿@using AuthStore.Models;
+@model IEnumerable<SanPham>
+
+
+<div class="container">
+    <script src="@Url.Content("~/Content/js/responsiveslides.min.js")"></script>
+    <script>
+        $(function () {
+            $("#slider").responsiveSlides({
+                nav: true,
+                speed: 500,
+                namespace: "callbacks",
+                pager: true,
+                autoplay: true,
+                autoplayTimeout: 1500,
+                autoplayHoverPause: true,
+            });
+        });
+    </script>
+    <div id="top" class="callbacks_container">
+        <ul class="rslides" id="slider">
+            <li>
+
+                <div class="banner-text">
+                    <h3>
+                        ÁO NỈ KHÔNG MŨ NỮ LOOSE BAD VIBES
+                    </h3>
+                    <p>Áo sweater là một trong những items thường được mix theo phong cách street style, áo cũng là một trong những items unisex (dùng được cho cả nam và nữ)</p>
+                    <a href="single.html">Xem thêm</a>
+                </div>
+
+            </li>
+            <li>
+
+                <div class="banner-text">
+                    <h3>
+                        ÁO PHÔNG NỮ IN HÌNH BOOLAAB
+                    </h3>
+                    <p>Chiếc áo được thiết kế dáng rộng và ngắn giúp khéo léo khoe được đường con nữ tính mà vẫn không thiếu phần năng động cá tính</p>
+                    <a href="single.html">Xem thêm</a>
+
+                </div>
+
+            </li>
+            <li>
+                <div class="banner-text">
+                    <h3>
+                        ÁO PHÔNG CROPTOP NỮ TRƠN BOOLAAB
+                    </h3>
+                    <p>Croptop là kiểu áo có độ dài ngắn lửng đến eo hoặc dài hơn một chút để lộ phần eo. Chính vì độ dài tương đối ngắn này mà croptop chỉ trở nên phổ biến trong làng thời trang nữ.</p>
+                    <a href="single.html">Xem thêm</a>
+
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</div>
+

@@ -1,0 +1,69 @@
+﻿@using AuthStore.Models;
+@model IEnumerable<SanPham>
+
+@{
+    ViewBag.Title = "Admin_Index";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+    // Khoi tao webGrid
+    WebGrid grid = new WebGrid(source: Model, rowsPerPage: 10);
+}
+
+@Html.ActionLink("Thêm sản phẩm", "TaoMoiSanPham", null, new { @class = "btn btn-success" })
+<br />
+<br />
+<p style="color:red; font-weight:bold;">Chức năng Up ảnh kèm theo khi chỉnh sửa và đăng bài đang lỗi !</p>
+<p style="color:red; font-weight:bold;">Mọi chức năng khác sử dụng bình thường !</p>
+@*thể hiện dữ liệu thông qua contril webgrid*@
+
+@grid.GetHtml(
+        tableStyle: "divTable",
+        headerStyle: "gridHead",
+        footerStyle: "fridFooter",
+        rowStyle: "gridRow",
+        alternatingRowStyle: "gridAltRow",
+        columns: grid.Columns(
+            grid.Column("MaSP", "Mã Sản Phẩm"),
+            grid.Column("TenSP", "Tên Sản Phẩm"),
+            grid.Column("DonGia", "Đơn giá"),
+            grid.Column("ThongTin", "Thông tin"),
+            grid.Column("MoTa", "Mô tả"),
+            grid.Column("NgayCapNhap", "Ngày nhập vào"),
+            grid.Column("HinhAnh", "Hình Ảnh", format: p => Html.Raw("<img width=\"133\" height=\"200\" src=\"../Content/images/product/" + p.HinhAnh + ".jpg" + "\" >")),
+            grid.Column(format: p => @Html.ActionLink("Chỉnh sửa", "ChinhSuaSanPham", new { @MaSP = p.MaSP })),
+            grid.Column(format: p => @Html.ActionLink("Xóa", "XoaSanPham", new { @id = p.MaSP }))
+ ))
+
+<style>
+    .gridHead {
+        padding-bottom: 15px;
+    }
+
+    .divTable {
+        margin: 0 auto;
+        color: black;
+    }
+
+    .gridAltRow {
+        padding: 0 10px 0 10px;
+    }
+
+    .gridRow {
+    }
+
+    .col {
+        padding-left: 10px;
+    }
+
+    th {
+        padding-right: 100px;
+        padding-bottom: 20px;
+    }
+
+    tr {
+        border: 0.5px #00000042 solid;
+    }
+
+    tfoot {
+        text-align: center;
+    }
+</style>

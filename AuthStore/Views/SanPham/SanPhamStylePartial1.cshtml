@@ -1,0 +1,26 @@
+﻿@using AuthStore.Models;
+@model  IEnumerable<SanPham>
+
+
+<div class="content-top">
+    <h1>Dành cho @Model.First().LoaiSanPham.TenLoai hàng mới</h1>
+    <div class="grid-in">
+        @foreach (var item in Model.Take(3)) // vì sao lại gọi là 1 cái model luôn, thì vì h nó là để dùng chung nên có thể có nhiều cái biến nó truyền vào thì dùng cái này
+                                            // ví dụ mà có 3 loại sản phẩm thì cũng đều có thể show cả temple này mà ko chỉnh sửa lại biến, kiểu cái này nó gọi như 1 cái nút cổ chai, nhiều nguồn dữ liệu dùng chung
+                                            //đây thì nó sẽ lấy 3 sản phẩm trong cái lstHDXM để truy vấn
+        {
+            <div class="col-md-4 grid-top">
+                <a href="@Url.RouteUrl("XemChiTiet", new{ @id = item.MaSP, @tensp = item.TenSP})" class="b-link-stripe b-animate-go  thickbox">
+                    <img class="img-responsive" src="@Url.Content("~/Content/images/product/"+item.HinhAnh+".jpg")" alt="">
+                    <div class="b-wrapper">
+                        <h3 class="b-animate b-from-left    b-delay03 ">
+                            <span>@item.ThongTin</span>
+                        </h3>
+                    </div>
+                </a>
+                <p><a href="single.html">@item.TenSP</a></p>
+            </div>
+        }
+        <div class="clearfix"> </div>
+    </div>
+</div>

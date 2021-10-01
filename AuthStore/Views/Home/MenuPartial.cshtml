@@ -1,0 +1,60 @@
+﻿@using AuthStore.Models;
+@model IEnumerable<SanPham>
+
+
+<div class=" h_menu4">
+    <ul class="memenu skyblue">
+        <li class="active grid"><a class="color8" href="@Url.Action("Index","Home")">Trang Chủ</a></li>
+        @foreach (var groupItem in Model.GroupBy(n=>n.LoaiSanPham))
+        {
+                if (groupItem.Key != null) { 
+            <li>
+                <a class="color1" href="#">@groupItem.Key.TenLoai</a>
+                <div class="mepanel">
+                    <div class="row">
+                        <div class="col1">
+                            <div class="h_nav">
+                                <ul>
+                                    @foreach (var item in groupItem.GroupBy(n => n.NhaSanXuat))
+                                    {
+                                        if (item.Key != null)
+                        {
+                                    <li><a href="@Url.Action("SanPham","SanPham", new { @MaLoaiSP = groupItem.Key.MaLoaiSP, @MaNSX = item.Key.MaNSX })">@item.Key.TenNSX</a></li>
+                        }
+                                        
+                                    }
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            }
+        }
+
+
+        <li class="grid">
+            <a class="color2" href="#">Thương Hiệu</a>
+            <div class="mepanel">
+                <div class="row">
+                    @foreach (var groupItem2 in Model.GroupBy(n => n.LoaiSanPham))
+                    {
+                        <div class="col1">
+                            <div class="h_nav">
+                                <h4>@groupItem2.Key.TenLoai</h4>
+                                <ul>
+                                    @foreach (var item2 in groupItem2.GroupBy(n => n.NhaSanXuat))
+                                    {
+                                        <li><a href="@Url.Action("SanPham","SanPham", new { @MaLoaiSP = groupItem2.Key.MaLoaiSP, @MaNSX = item2.Key.MaNSX })">@item2.Key.TenNSX</a></li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </li>
+
+    </ul>
+</div>

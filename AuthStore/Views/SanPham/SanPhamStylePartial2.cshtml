@@ -1,0 +1,61 @@
+﻿@model IEnumerable<AuthStore.Models.SanPham>
+
+
+@*đây là cách lấy sản phẩm ra riêng lẻ ko sử dụng foreach cos nghia là với cấu trúc mà kiểu nó ko giống nhau, ko lặp lại thì dùng cách này để bảo toàn cấu trúc FE*@
+
+<div class="content-top-bottom">
+    <h2>BỘ SƯU TẬP TỚI TỪ CÁC BRAND OTHER SIDE</h2>
+    <div class="col-md-6 men">
+        <a href="@Url.Action("Index","Home")" class="b-link-stripe b-animate-go  thickbox">
+            @*540x540*@
+            <img class="img-responsive" src="@Url.Content("~/Content/images/otherPRD/" + Model.ElementAt(0).HinhAnh + ".jpg")" alt="">  
+                                                @*đây là lấy con đầu tiên khi craw từ cái list sản phẩm khác, sp loại 4 là cái con 540540*@
+            <div class="b-wrapper">
+                <h3 class="b-animate b-from-top top-in   b-delay03 ">
+                    <span>@Model.ElementAt(0).MoTa</span>
+                </h3>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-6">
+        <div class="col-md1 ">
+            <a href="@Url.Action("Index","Home")" class="b-link-stripe b-animate-go  thickbox">
+                @*540x350*@
+                <img class="img-responsive" src="@Url.Content("~/Content/images/otherPRD/" + Model.ElementAt(1).HinhAnh + ".jpg")" alt="">
+                <div class="b-wrapper">
+                    <h3 class="b-animate b-from-top top-in1   b-delay03 ">
+                        <span>@Model.ElementAt(1).MoTa</span>
+                    </h3>
+                </div>
+            </a>
+        </div>
+        <div class="col-md2">
+            <div class="col-md-6 men1">
+                <a href="@Url.Action("Index","Home")" class="b-link-stripe b-animate-go  thickbox">
+                    @*255x130*@
+                    <img class="img-responsive" src="@Url.Content("~/Content/images/otherPRD/" + Model.ElementAt(2).HinhAnh + ".jpg")" alt="">
+                    <div class="b-wrapper">
+                        <h3 class="b-animate b-from-top top-in2   b-delay03 ">
+                            <span>@Model.ElementAt(2).MoTa</span>
+                        </h3>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6 men2">
+                <a href="@Url.Action("Index","Home")" class="b-link-stripe b-animate-go  thickbox">
+                    @*255x130*@
+                    <img class="img-responsive" src="@Url.Content("~/Content/images/otherPRD/" + Model.ElementAt(3).HinhAnh + ".jpg")" alt="">
+                    <div class="b-wrapper">
+                        <h3 class="b-animate b-from-top top-in2   b-delay03 ">
+                            <span>@Model.ElementAt(3).MoTa</span>
+                        </h3>
+                    </div>
+                </a>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="clearfix"> </div>
+</div>
+
+

@@ -1,0 +1,192 @@
+﻿@model AuthStore.Models.SanPham
+
+@{
+    ViewBag.Title = "ChinhSuaSanPham";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+
+<script src="@Url.Content("~/Content/AdminLayout/ckeditor/ckeditor.js")"></script>
+<script type="text/javascript">
+    // CKEDITOR.replace('ckeditor');
+    var editor = CKEDITOR.replace('ckeditor', {
+        customConfig: '/Content/AdminLayout/ckeditor/config.js',
+    });
+</script>
+
+@*Chon ngay thang*@
+<script>
+    $(function () {
+        $("#datepicker").datepicker();
+    });
+</script>
+
+@using (Html.BeginForm("ChinhSuaSanPham", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true)
+    @Html.Hidden("MaSP",Model.MaSP)
+
+    <div class="form-group">
+        @Html.Label("Tên của sản phẩm (Kiểu Chữ):", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TenSP)
+            @Html.ValidationMessageFor(model => model.TenSP)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Đơn giá (Kiểu số, tối đa 10 số):", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DonGia)
+            @Html.ValidationMessageFor(model => model.DonGia)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Ngày tháng nhập vào (Kiểu ngày tháng):", new { @class = "control-label col-md-3" })
+        <div class="col-md-10">
+            @if (Model.NgayCapNhap != null)
+            {
+                <p>Ngày Cập Nhập Cũ : @Model.NgayCapNhap.Value.ToString("dd/MM/yyyy")</p>
+                <input name="NgayCapNhap" type="date" id="datepicker">
+                @Html.ValidationMessageFor(model => model.NgayCapNhap)
+            }
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Thông tin (Kiểu chữ):", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <textarea name="ThongTin" class="ckeditor" id="ckeditor">@Model.ThongTin</textarea>
+            @Html.ValidationMessageFor(model => model.ThongTin)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Mô tả (Kiểu chữ):", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <textarea name="MoTa" class="ckeditor" id="ckeditor">@Model.MoTa</textarea>
+            @Html.ValidationMessageFor(model => model.MoTa)
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.Label("Số lượng tồn (Kiểu số):", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.SoLuongTon)
+            @Html.ValidationMessageFor(model => model.SoLuongTon)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Lượt xem (Kiểu số):", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.LuotXem)
+            @Html.ValidationMessageFor(model => model.LuotXem)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Mới (Kiểu số):", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Moi)
+            @Html.ValidationMessageFor(model => model.Moi)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Mã Loại SP (Kiểu số, Chỉ: 1-Nam, 2-Nữ ,3-Vớ&Tất ,4-Khác):", new { @class = "control-label col-md-4" })
+        <div class="col-md-2">
+            @Html.DropDownList("MaLoaiSP", null, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Mã NCC(Kiểu số, Chỉ: 1-Đồng Xuân, 2-Ninh Hiệp ,3-Triều Khúc):", new { @class = "control-label col-md-4" })
+        <div class="col-md-2">
+            @Html.DropDownList("MaNCC", null, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Mã NSX(Kiểu số, Chỉ: 1-HM, 2-Canifa ,3-TokyoLife):", new { @class = "control-label col-md-4" })
+        <div class="col-md-2">
+            @Html.DropDownList("MaNSX", null, new { @class = "form-control" })
+        </div>
+    </div>
+    @*xem laij*@
+
+    <div class="form-group">
+        @Html.Label("Đã xóa ?:", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DaXoa)
+            @Html.ValidationMessageFor(model => model.DaXoa)
+        </div>
+    </div>
+
+    @*tạo thẻ input để upload hình ảnh*@
+    <div class="form-group">
+        @Html.Label("Hình ảnh đại diện cho sản phẩm (Đuôi JPG):", new { @class = "control-label col-md-4" })
+        <div class="col-md-10">
+            <input type="file" name="HinhAnh" id="HinhAnh" />
+            @Html.ValidationMessageFor(model => model.HinhAnh)
+            <br />
+            <p>Hình Ảnh đại diện cũ :</p>
+            <img src="@Url.Content("~/Content/images/product/"+Model.HinhAnh+".jpg")" width="133" height="200" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Hình ảnh số 1 (Đuôi JPG):", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="file" name="HinhAnh1" id="HinhAnh1" />
+            @Html.ValidationMessageFor(model => model.HinhAnh1)
+            <br />
+            <p>Hình Ảnh số 1 cũ :</p>
+            <img src="@Url.Content("~/Content/images/product/"+Model.HinhAnh1+".jpg")" width="133" height="200" />
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Hình ảnh số 2 (Đuôi JPG):", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="file" name="HinhAnh2" id="HinhAnh2" />
+            @Html.ValidationMessageFor(model => model.HinhAnh2)
+            <br />
+            <p>Hình Ảnh số 2 cũ :</p>
+            <img src="@Url.Content("~/Content/images/product/"+Model.HinhAnh2+".jpg")" width="133" height="200" />
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Hình ảnh số 3 (Đuôi JPG):", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="file" name="HinhAnh3" id="HinhAnh3" />
+            @Html.ValidationMessageFor(model => model.HinhAnh3)
+            <br />
+            <p>Hình Ảnh số 3 cũ :</p>
+            <img src="@Url.Content("~/Content/images/product/"+Model.HinhAnh3+".jpg")" width="133" height="200" />
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Hình ảnh số 4 (Đuôi JPG):", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="file" name="HinhAnh4" id="HinhAnh4" />
+            @Html.ValidationMessageFor(model => model.HinhAnh4_)
+            <br />
+            <p>Hình Ảnh số 4 cũ :</p>
+            <img src="@Url.Content("~/Content/images/product/"+Model.HinhAnh4_+".jpg")" width="133" height="200" />
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Chinh Sua" class="btn btn-success" />
+            <a class="back_home" href="@Url.Action("Index", "Admin")">Trở về trang chủ</a>
+        </div>
+    </div>
+</div>
+
+}

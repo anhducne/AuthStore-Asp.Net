@@ -1,0 +1,147 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AuthStore - Make Your Day !</title>
+    <link href="@Url.Content("~/Content/css/bootstrap.css")" rel="stylesheet" type="text/css" media="all" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="@Url.Content("~/Content/js/jquery.min.js")"></script>
+    <script src="@Url.Content("~/Content/js/reg.js")"></script>
+
+    <!-- Custom Theme files -->
+    <!--theme-style-->
+    <link href="@Url.Content("~/Content/css/style.css")" rel="stylesheet" type="text/css" media="all" />
+    <!--//theme-style-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="New Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!--fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet">
+    <!--//fonts-->
+    <!-- start menu -->
+    <link href="@Url.Content("~/Content/css/memenu.css")" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src="@Url.Content("~/Content/js/memenu.js")"></script>
+    <script>$(document).ready(function () { $(".memenu").memenu(); });</script>
+    <script src="@Url.Content("~/Content/js/simpleCart.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")"></script>
+
+
+</head>
+<body>
+    <!--header-->
+    <div class="header">
+
+        <div class="header-top">
+            @Html.Action("HeaderTopPartial", "Home")
+            @*<div class="container">
+                <div class="search">
+                    <form>
+                        <input type="text" value="" placeholder="Nhập gì đó đi" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
+                        <input type="submit" value="Tìm kiếm">
+                    </form>
+                </div>
+                <div class="header-left">
+                    <ul>
+                        <li><a href="login.html">Đăng Nhập</a></li>
+                        <li><a href="@Url.Action("DangKy","Home")">Đăng Ký</a></li>
+
+                    </ul>
+                    <div class="cart box_1">
+                        <a href="checkout.html">
+                            <h3>
+                                <img src="@Url.Content("~/Content/images/cart.png")" alt="" />
+                                <div class="total news-total">
+                                   <span id="simpleCart_quantity" class="simpleCart_quantity new-quantity"> </span>
+                                </div>
+
+                            </h3>
+                        </a>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="clearfix"> </div>
+            </div>*@
+        </div>
+
+        <div class="container">
+            <div class="head-top">
+                <div class="logo">
+                    <a href="@Url.Action("Index","Home")"><img id="de_logo" src="@Url.Content("~/Content/images/logo.png")" alt=""></a>
+                </div>
+                @Html.Action("MenuPartial", "Home")
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <div class="banner">
+        @Html.Action("BannerPartial", "Home")
+    </div>
+
+    <!--content-->
+    <div class="content">
+
+        @RenderBody()
+
+    </div>
+    <div class="content-bottom">
+        @Html.Action("ContentBotPartial", "Home")
+    </div>
+        <!--footer-->
+        <div class="footer">
+            <div class="container">
+                <div class="footer-top-at">
+
+                    <div class="col-md-4 amet-sed">
+                        <h4>Về chúng tôi</h4>
+                        <ul class="nav-bottom">
+                            <li><a href="#">Hướng dẫn đặt hàng</a></li>
+                            <li><a href="#">Đặt câu hỏi cho chúng tôi</a></li>
+                            <li><a href="contact.html">Chi nhánh</a></li>
+                            <li><a href="#">Giao hàng</a></li>
+                            <li><a href="#">Khách thành viên</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 amet-sed ">
+                        <h4>Liên hệ với chúng tôi</h4>
+
+                        <p>
+                            Đ/C: Hà Đông - Hà Nội - Việt Nam
+                        </p>
+                        <p>Hotline: 0947150729</p>
+                        <p>Văn phòng: +84 947150729</p>
+                        <ul class="social">
+                            <li><a href="#"><i> </i></a></li>
+                            <li><a href="#"><i class="twitter"> </i></a></li>
+                            <li><a href="#"><i class="rss"> </i></a></li>
+                            <li><a href="#"><i class="gmail"> </i></a></li>
+
+                        </ul>
+                    </div>
+                    <div class="col-md-4 amet-sed">
+                        <h4>Thông tin mới</h4>
+                        <p>
+                            Đăng nhập và nhận thông tin khuyến mãi !
+                        </p>
+                        <div class="header-right">
+                            <ul>
+                                <li><a href="login.html">Đăng Nhập</a></li>
+                                <li><a href="register.html">Đăng Ký</a></li>
+
+                            </ul>
+                            <img src="@Url.Content("~/Content/images/logo-bct.png")" alt="" class="up-date-1" />
+                        </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+            <div class="footer-class">
+                <p>© 2021 Auth store All Rights Reserved | Design by  <a href="https://www.facebook.com/nnad2105/" target="_blank">Nnad_2105</a> </p>
+            </div>
+        </div>
+</body>
+</html>

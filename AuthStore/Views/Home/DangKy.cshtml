@@ -1,0 +1,98 @@
+﻿@using CaptchaMvc.HtmlHelpers
+@using CaptchaMvc
+@using AuthStore.Models
+
+@model ThanhVien
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Tạo tài khoản - AutheStore</title>
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/jquery.min.js  ")">
+    <!-- Custom Theme files -->
+    <link href="@Url.Content("~/Content/css/reg.css")" rel="stylesheet" type="text/css" media="all" />
+    <!-- for-mobile-apps -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Clother and more !" />
+    <!-- //for-mobile-apps -->
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!--header start here-->
+    <div class="header">
+        <div class="header-main">
+            <h1>Tạo tài khoản</h1>
+            <div class="header-bottom">
+                <div class="header-right w3agile">
+
+                    <div class="header-left-bottom agileinfo">
+
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+
+                            // đây là chia vào các cái input để validate
+
+                            //hoten
+                            @Html.TextBoxFor(model => model.HoTen, new { @class = "", @placeholder = "Họ và tên" })
+                            @Html.ValidationMessageFor(model => model.HoTen, string.Empty, new { @style = "font - weight:bold; color: red; padding-left: 25%;" })
+                            @*<input type="text" value="Họ tên" name="HoTen" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Họ tên';}" />*@
+
+                            //taikhoan
+                            @Html.TextBoxFor(model => model.TaiKhoan, new { @class = "", @placeholder = "Tài Khoản" })
+                            @Html.ValidationMessageFor(model => model.TaiKhoan, string.Empty, new { @style = "font - weight:bold; color: red; padding-left: 25%;" })
+                            @*<input type="text" value="Tài khoản" name="TaiKhoan" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Tài khoản';}" />*@
+
+                            //matkhau
+                            @Html.TextBoxFor(model => model.MatKhau, new { @class = "", @placeholder = "Mật Khẩu" })
+                            @Html.ValidationMessageFor(model => model.MatKhau, string.Empty, new { @style = "font - weight:bold; color: red; padding-left: 25%;" })
+                            @*<input type="password" placeholder="Mật khẩu" value="" name="MatKhau" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" />*@
+
+                            //email
+                            @Html.TextBoxFor(model => model.Email, new { @class = "", @placeholder = "Email" })
+                            @Html.ValidationMessageFor(model => model.Email, string.Empty, new { @style = "font - weight:bold; color: red; padding-left: 25%;" })
+                            @*<input type="text" value="Email" name="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" />*@
+
+                            //diachi
+                            @Html.TextBoxFor(model => model.DiaChi, new { @class = "", @placeholder = "Địa chỉ" })
+                            @Html.ValidationMessageFor(model => model.DiaChi, string.Empty, new { @style = "font - weight:bold; color: red; padding-left: 25%;" })
+                            @*<input type="text" value="Địa Chỉ" name="DiaChi" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Địa chỉ';}" />*@
+
+                            //sodienthoai
+                            @Html.TextBoxFor(model => model.SoDienThoai, new { @class = "", @placeholder = "Số Điện Thoại" })
+                            @Html.ValidationMessageFor(model => model.SoDienThoai, string.Empty, new { @style = "font - weight:bold; color: red; padding-left: 25%;" })
+                            @*<input type="text" value="Số điện thoại" name="SoDienThoai" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Số điện thoại';}" />*@
+
+                            @Html.DropDownList("CauHoi", (IEnumerable<SelectListItem>)ViewBag.CategoryList, new { @class = "form-controll" })
+
+                            //cautraloi
+                            @Html.TextBoxFor(model => model.CauTraLoi, new { @class = "", @placeholder = "Câu trả lời" })
+                            @Html.ValidationMessageFor(model => model.CauTraLoi, string.Empty, new { @style = "font - weight:bold; color: red; padding-left: 25%;" })
+                            @*<input type="text" value="Câu trả lời" name="CauTraLoi" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Câu trả lời';}" />*@
+
+                            <input type="submit" value="ĐĂNG KÝ" name="btn_submit">
+                            <h1 style="color=red;">@ViewBag.ThongBao</h1>
+                            <a class="back_home" href="@Url.Action("Index", "Home")">Trở về trang chủ</a>
+
+                        }
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--header end here-->
+    <div class="copyright">
+        <p>© 2021 Auth store All Rights Reserved | Design by  <a href="https://www.facebook.com/nnad2105/" target="_blank">Nnad_2105</a></p>
+    </div>
+    <!--footer end here-->
+</body>
+</html>

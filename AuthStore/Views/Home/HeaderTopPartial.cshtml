@@ -1,0 +1,158 @@
+﻿@using AuthStore.Models
+
+
+
+<div class="container">
+    <div class="search">
+        <form>
+            <input type="text" value="" placeholder="Nhập gì đó đi" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
+            <input type="submit" value="Tìm kiếm">
+        </form>
+    </div>
+    <div class="header-left">
+        <ul>
+            @if (Session["TaiKhoan"] != null && Session["TaiKhoan"] != "")
+            { //check xem khoi tao chua hay rong
+                ThanhVien tv = (ThanhVien)Session["TaiKhoan"];
+                <li><a href="" class="">Chào @tv.HoTen </a></li>
+                <li><a href="@Url.Action("DangXuat","Home")" class="">Đăng Xuất</a></li>
+            }
+            else
+            {
+                <li><a href="" class="btn">Đăng Nhập</a></li>
+                <li><a href="@Url.Action("DangKy","Home")">Đăng Ký</a></li>
+            }
+
+            @*popup đăng nhập*@
+            <div class="modal">
+                <div class="modal-content">
+                    <!-- <span class="close">&times;</span> -->
+                    <div class="form-reg">
+                        <div class="loginbox">
+                            <h1>Đăng Nhập</h1>
+                            @using (Ajax.BeginForm("DangNhap", "Home", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "ThongBao" }))
+                            {
+
+                                <p>Tên đăng nhập</p>
+                                <input type="text" name="txtTenDangNhap" placeholder="Tài khoản">
+                                <p>Mật khẩu</p>
+                                <input type="password" name="txtMatKhau" placeholder="Mật khẩu">
+                                <input type="submit" name="" value="Đăng Nhập">
+                                <h3 style="font-weight:bold; color:red; text-align:center;" id="ThongBao"></h3>
+                                <a href="#">Quên mật khẩu ?</a><br>
+                                <a href="@Url.Action("DangKy","Home")">Không có tài khoản ?</a>
+                                <a class="back_home" href="@Url.Action("Index", "Admin")">Dành cho người quản trị</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*endpopup đăng nhập*@
+        </ul>
+        <div class="cart box_1">
+            <a href="checkout.html">
+                <h3>
+                    @*<img src="@Url.Content("~/Content/images/cart.png")" alt="" />
+        <div class="total news-total">
+            <span id="simpleCart_quantity" class="simpleCart_quantity new-quantity"> </span>
+        </div>*@
+                    <a href="" class="open-qv-cart a btn-4"><img src="@Url.Content("~/Content/images/cart.png")" alt="" />
+                        <span class="cart-count">0</span>
+                    </a>
+                    <div class="modal-4">
+                        <div class="modal-content-4">
+                            <h3>Giỏ hàng của tôi</h3>
+                            <ul class="no-bullets cart-list">
+                                <li class="cart-item">
+                                    <div class="grid">
+                                        <div class="grid__item1">
+                                            <a href="/products/crep-protect-pills">
+                                                <img src="@Url.Content("~/Content/images/product/bacninh (1).jpg")" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="grid__item2">
+                                            <div class="cart-info">
+                                                <a href="/products/crep-protect-pills" class="a text-uppcase">
+                                                    ÁO PHÔNG CROPTOP
+                                                </a>
+                                                <small>Crep Protect Pill</small>
+                                                <span class="quantity text-black">Số lượng: 1</span>
+                                                <span class="current-price text-bold text-black">Giá/sp: 320,000₫</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="cart-item">
+                                    <div class="grid">
+                                        <div class="grid__item1">
+                                            <a href="/products/crep-protect-pills">
+                                                <img src="@Url.Content("~/Content/images/product/bacninh (2).jpg")" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="grid__item2">
+                                            <div class="cart-info">
+                                                <a href="/products/crep-protect-pills" class="a text-uppcase">
+                                                    ÁO PHÔNG CROPTOP
+                                                </a>
+                                                <small>Crep Protect Pill</small>
+                                                <span class="quantity text-black">Số lượng: 1</span>
+                                                <span class="current-price text-bold text-black">Giá/sp: 320,000₫</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="cart-item">
+                                    <div class="grid">
+                                        <div class="grid__item1">
+                                            <a href="/products/crep-protect-pills">
+                                                <img src="@Url.Content("~/Content/images/product/bacninh (3).jpg")" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="grid__item2">
+                                            <div class="cart-info">
+                                                <a href="/products/crep-protect-pills" class="a text-uppcase">
+                                                    ÁO PHÔNG CROPTOP
+                                                </a>
+                                                <small>Crep Protect Pill</small>
+                                                <span class="quantity text-black">Số lượng: 1</span>
+                                                <span class="current-price text-bold text-black">Giá/sp: 320,000₫</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="cart-item">
+                                    <div class="grid">
+                                        <div class="grid__item1">
+                                            <a href="/products/crep-protect-pills">
+                                                <img src="@Url.Content("~/Content/images/product/bacninh (4).jpg")" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="grid__item2">
+                                            <div class="cart-info">
+                                                <a href="/products/crep-protect-pills" class="a text-uppcase">
+                                                    ÁO PHÔNG CROPTOP
+                                                </a>
+                                                <small>Crep Protect Pill</small>
+                                                <span class="quantity text-black">Số lượng: 1</span>
+                                                <span class="current-price text-bold text-black">Giá/sp: 320,000₫</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="qv-total-cart text-left text-black">
+                                <p class="total-modal4"> Tạm tính: <strong>1,820,000₫</strong></p>
+                            </div>
+                            <div class="quickview-cart-actions clearfix">
+                                <a href="chi-tiet-don-hang.html" class="view-cart">Xem giỏ hàng</a>
+                                <a href="thanh-toan.html" class="checkout">Thanh toán</a>
+                            </div>
+                        </div>
+                    </div>
+                </h3>
+            </a>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+    <div class="clearfix"> </div>
+</div>

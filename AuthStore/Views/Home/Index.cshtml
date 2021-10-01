@@ -1,0 +1,28 @@
+﻿@using AuthStore.Models;
+@model IEnumerable<SanPham>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/_HomeLayout.cshtml";
+}
+
+@{
+    IEnumerable<SanPham> lstHDXM = ViewBag.ListHDXM as IEnumerable<SanPham>;
+    IEnumerable<SanPham> lstHTDM = ViewBag.ListHTDM as IEnumerable<SanPham>;
+    IEnumerable<SanPham> lstHHTM = ViewBag.ListHHTM as IEnumerable<SanPham>;
+    IEnumerable<SanPham> lstUnKnow = ViewBag.ListUn as IEnumerable<SanPham>;
+}
+
+@*bước 1 tách code và lồng partial view*@
+@*bước 2 gán dữ liệu từ controller thông qua viewbag vào partialview*@
+
+<div class="container">
+    @*PartialView Số 1*@
+ 
+    @Html.Partial("~/Views/SanPham/SanPhamStylePartial1.cshtml", lstHDXM)
+    @Html.Partial("~/Views/SanPham/SanPhamStylePartial1.cshtml", lstHTDM)
+    @Html.Partial("~/Views/SanPham/SanPhamStylePartial1.cshtml", lstHHTM)
+    @*PartialView Số 2*@
+    @Html.Partial("~/Views/SanPham/SanPhamStylePartial2.cshtml", lstUnKnow)
+</div> 
+ 
